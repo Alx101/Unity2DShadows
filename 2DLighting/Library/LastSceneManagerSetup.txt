@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/2DLighting/Example/Example.unity
+  isLoaded: 1
+  isActive: 1
