@@ -3,5 +3,8 @@ This is an open-source Unity addon that allows you to easily create fully dynami
 
 ![image](https://dl.dropboxusercontent.com/u/38127392/2DShadows.png)
 
+Shadows are pixel-perfect, meaning an image with transparency (for example the three dots in the image above) will generate appropriate shadow geometry. There's also the posibility to select filtering modes for the texturemaps created for the shadows, as well as blending mode for how the shadows will be applied to the objects to be lit.
+
+![editor](https://dl.dropboxusercontent.com/u/38127392/2dShadowEditor.png)
 
 Documentation to be added.
