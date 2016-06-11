@@ -15,10 +15,7 @@ Shadows are pixel-perfect, meaning an image with transparency (for example the t
 The editor included is meant to make it easier to edit many objects' lightsettings at once. It also provides an easy-to-find settings window for the shadow controller, so you won't have to go hunting for what object you attached that script to.
 
 ##How to use
-Coming soon!
-
-##Documentation
-Documentation to be added.
+Check the Wiki page here on GitHub for a quick-setup guide.
 
 ##Notice
 This project is under the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0). Feel free to clone and extend, or contribute to this project! Any improvements or suggestions are much apprechiated, as this was made to be free and open to everyone using Unity.
