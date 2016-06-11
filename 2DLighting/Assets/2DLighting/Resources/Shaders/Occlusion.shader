@@ -21,10 +21,10 @@
 				uniform float4x4 LIGHT_PROJ;
 				uniform float4 _SpriteColor;
 
-				float4 ComputeDistance(float2 TexCoord : TEXCOORD0) : COLOR0
+				float4 ComputeDistance(float2 TexCoord : TEXCOORD1) : COLOR1
 				{
 					float4 color = tex2D(_MainTex, TexCoord) * _SpriteColor;
-					color = color.a >= _Alpha ? float4(1, 0, 0, 1) : float4(0, 0, 0, 1);
+					color = color.a >= _Alpha ? float4(1, 0, 0, 1) : float4(0, 1, 0, 1);
 					return color;
 				}
 
@@ -33,7 +33,8 @@
 					v2f_img o;
 					float4x4 m = mul(LIGHT_MVP, _Object2World);
 					float4x4 mvp = mul(LIGHT_PROJ, m);
-					
+
+
 					o.pos = mul(mvp, i.vertex);
 					o.uv = MultiplyUV(UNITY_MATRIX_TEXTURE0, i.texcoord);
 					return o;

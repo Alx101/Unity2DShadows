@@ -66,10 +66,8 @@
 
 						//coord which we will sample from occlude map
 						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
-						#if UNITY_UV_STARTS_AT_TOP
-						#else
+
 						coord.y = 1 - coord.y;
-						#endif
 
 						//sample occlusion map
 						float4 data = tex2D(_OccTex, coord);
