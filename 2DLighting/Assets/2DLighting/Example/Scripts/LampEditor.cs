@@ -12,11 +12,11 @@ public class LampEditor : MonoBehaviour
 		}
 		set
 		{
+			sel = value;
 			selectLabel.text = value.gameObject.name;
 			onoff.isOn = value.on;
 			cone.value = value.angle;
 			rotation.value = value.transform.rotation.eulerAngles.z;
-			sel = value;
 		}
 	}
 	LightSource sel;

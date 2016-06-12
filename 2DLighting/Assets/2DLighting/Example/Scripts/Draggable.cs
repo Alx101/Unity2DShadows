@@ -17,6 +17,12 @@ public class Draggable : MonoBehaviour
 	
 	}
 
+	public void invokeClicked()
+	{
+		if (OnClicked != null)
+			OnClicked.Invoke(this, null);
+	}
+
 	// Update is called once per frame
 	void LateUpdate()
 	{
@@ -27,23 +33,10 @@ public class Draggable : MonoBehaviour
 			transform.Translate(deltaPos);
 		}
 
-		if (Input.GetMouseButtonUp(0))
-		{
-			dragging = false;
-		}
+	}
 
-		if (Input.GetMouseButtonDown(0))
-		{
-			Vector3 mPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1));
-			mPos.z = transform.position.z;
-			if (Vector3.Distance(mPos, transform.position) <= dragRadius)
-			{
-				dragging = true;
-				if (OnClicked != null)
-					OnClicked.Invoke(this, null);
-				Debug.Log("Dragging");
-			}
-		}
-
+	public void isDragged(bool val)
+	{
+		dragging = val;
 	}
 }
