@@ -26,7 +26,7 @@ public class MouseDrag : MonoBehaviour
 				target = hit;
 			}
 		}
-		if (Input.GetMouseButtonUp(0))
+		if (Input.GetMouseButtonUp(0) && target)
 		{
 			target.GetComponent<Draggable>().isDragged(false);
 		}

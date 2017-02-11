@@ -1,4 +1,6 @@
-﻿Shader "Hidden/2DLighting/Occlusion" 
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Hidden/2DLighting/Occlusion" 
 {
 	Properties 
 	{
@@ -31,7 +33,7 @@
 				v2f_img vert(appdata_img i)
 				{
 					v2f_img o;
-					float4x4 m = mul(LIGHT_MVP, _Object2World);
+					float4x4 m = mul(LIGHT_MVP, unity_ObjectToWorld);
 					float4x4 mvp = mul(LIGHT_PROJ, m);
 
 
