@@ -8,7 +8,7 @@ public class Draggable : MonoBehaviour
 
 	public event EventHandler OnClicked;
 
-	Vector3 deltaPos;
+	Vector3 pos;
 	bool dragging = false;
 
 	// Use this for initialization
@@ -28,9 +28,9 @@ public class Draggable : MonoBehaviour
 	{
 		if (dragging)
 		{
-			deltaPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1)) - transform.position;
-			deltaPos.z = 0;
-			transform.Translate(deltaPos);
+			pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1));
+			pos.z = 0;
+			transform.position = pos;
 		}
 
 	}

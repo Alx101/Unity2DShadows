@@ -58,7 +58,17 @@
 					
 					//UNITY_UNROLL is necessary to make the shader WebGL compatible, forcing it to unroll the loop
 					UNITY_UNROLL
-					for(int y = 0; y < res; y += 1)
+					#if defined(QUALITY_CRAP)
+					for(int y = 0; y < 128; y += 1)
+					#endif
+					#if defined(QUALITY_LOW)
+					for(int y = 0; y < 256; y += 1)
+					#endif
+					#if defined(QUALITY_MEDIUM)
+					for(int y = 0; y < 512; y += 1)
+					#endif
+					#if defined(QUALITY_HIGH)
+					for(int y = 0; y < 512; y += 1)
 					{
 						//Rectangular to polar
 						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
@@ -70,7 +80,289 @@
 						coord.y = 1 - coord.y;
 
 						//sample occlusion map
-						float4 data = tex2D(_OccTex, coord);
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 512; y < 1024; y += 1)
+					#endif
+					#if defined(QUALITY_HIGHER)
+					for(int y = 0; y < 512; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 512; y < 1024; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 1024; y < 1536; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 1536; y < 2048; y += 1)
+					#endif
+					#if defined(QUALITY_BEST)
+					for(int y = 0; y < 512; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 512; y < 1024; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 1024; y < 1536; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 1536; y < 2048; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 2048; y < 2560; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 2560; y < 3072; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 3072; y < 3584; y += 1)
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
+
+						//distance
+						float dst2 = (float)y / (float)res;
+
+						//if we've hit an opaque fragment (occluder), we'll get the new distance
+						//if the new distance is below the current, then we'll use that for our ray
+						float caster = data.r;
+						if(caster > 0.5)
+						{
+							dst1 = min(dst1, dst2);
+						}
+					}
+					for(int y = 3584; y < 4096; y += 1)
+					#endif
+					{
+						//Rectangular to polar
+						norm.y = ((float)y / (float)res) * 2.0 - 1.0;
+						float r = (1.0 + norm.y) * 0.5;
+
+						//coord which we will sample from occlude map
+						float2 coord = float2(-r * tSin, -r * cSin) / 2.0 + 0.5;
+
+						coord.y = 1 - coord.y;
+
+						//sample occlusion map
+						float4 data = tex2Dlod(_OccTex, float4(coord, 0.0, 0.0));
 
 						//distance
 						float dst2 = (float)y / (float)res;

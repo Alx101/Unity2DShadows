@@ -7,7 +7,7 @@ public class LightSource : MonoBehaviour
 	[Range(0, 360)]
 	public float angle = 360f;
 	//Intensity (hardness) of the light
-	[Range(0, 100)]
+	[Range(0, 5)]
 	public float intensity = 1;
 	
 	//Diameter of the light in unity units (the bigger the light, the higher imprecision)
